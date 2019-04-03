@@ -13,4 +13,8 @@ class Paper {
         return this.sentence
     }
 
+    fun write(textToWrite: String) {
+        this.sentence += textToWrite
+    }
+
 }

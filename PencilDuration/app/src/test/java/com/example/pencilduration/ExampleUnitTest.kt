@@ -11,10 +11,22 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun givenAPaperWhenYouWriteASentenceThenTheSentenceIsStored() {
+    fun givenAPaperWhenAPaperStartsOffWithASentenceThenTheSentenceIsStored() {
         val sentence = "this is a sentence"
         val paper: Paper = Paper(sentence)
-       //  assertEquals( Paper::class.java, paper::class.java)
+
         assertEquals(sentence, paper.getSentence())
+    }
+
+    @Test
+    fun givenAPaperWithASentenceInItWhenIWriteToItThenItWillAppendToTheSentence() {
+        val sentence = "this is a sentence"
+        val paper = Paper(sentence)
+
+        paper.write(" and it is really cool!")
+
+        val expectedValue = "this is a sentence and it is really cool!"
+
+        assertEquals(expectedValue, paper.getSentence())
     }
 }
