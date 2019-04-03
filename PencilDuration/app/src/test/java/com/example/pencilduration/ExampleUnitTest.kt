@@ -3,6 +3,7 @@ package com.example.pencilduration
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.junit.Before
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -10,23 +11,29 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-    @Test
-    fun givenAPaperWhenAPaperStartsOffWithASentenceThenTheSentenceIsStored() {
-        val sentence = "this is a sentence"
-        val paper: Paper = Paper(sentence)
 
-        assertEquals(sentence, paper.getSentence())
+    var paper: Paper? = null
+    var pencil = Pencil()
+    val sentence = "this is a sentence"
+
+    @Before
+    fun setup() {
+
+        this.pencil = Pencil()
+        this.paper = Paper(sentence, this.pencil)
+    }
+
+    @Test
+    fun GIVEN_APencilAndPaper_WHEN_IWriteASentence_THEN_ThatSentenceIsReturned() {
+        assertEquals(this.sentence, this.paper?.getSentence())
     }
 
     @Test
     fun givenAPaperWithASentenceInItWhenIWriteToItThenItWillAppendToTheSentence() {
-        val sentence = "this is a sentence"
-        val paper = Paper(sentence)
-
-        paper.write(" and it is really cool!")
+        paper?.write(" and it is really cool!")
 
         val expectedValue = "this is a sentence and it is really cool!"
 
-        assertEquals(expectedValue, paper.getSentence())
+        assertEquals(expectedValue, paper?.getSentence())
     }
 }
