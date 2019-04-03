@@ -11,7 +11,10 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun givenAPaperWhenYouWriteASentenceThenTheSentenceIsStored() {
+        val sentence = "this is a sentence"
+        val paper: Paper = Paper(sentence)
+       //  assertEquals( Paper::class.java, paper::class.java)
+        assertEquals(sentence, paper.getSentence())
     }
 }
