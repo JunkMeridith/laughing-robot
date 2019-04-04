@@ -10,4 +10,8 @@ class Pencil {
     constructor(durability: Int) {
         this.durability = durability
     }
+
+    fun degrades(sentence: String){
+        this.durability = this.durability - sentence.length
+    }
 }

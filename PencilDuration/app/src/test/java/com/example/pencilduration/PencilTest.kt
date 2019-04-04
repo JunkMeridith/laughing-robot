@@ -15,4 +15,12 @@ class PencilTest {
         var pencil = Pencil(20)
         assertEquals(20, pencil.durability)
     }
+
+    @Test
+    fun Given_A_Pencil_When_I_Write_Then_the_Pencil_Degrades(){
+        var pencil = Pencil(50)
+        pencil.degrades("Hello")
+        assertEquals(45, pencil.durability)
+
+    }
 }
