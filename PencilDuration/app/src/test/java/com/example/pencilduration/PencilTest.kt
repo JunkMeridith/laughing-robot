@@ -1,6 +1,5 @@
 package com.example.pencilduration
 
-import android.os.Environment
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -131,7 +130,7 @@ class PencilTest {
     }
 
     @Test
-    fun `Given a pencil When I construct the pencil Then I should have default eraser durability`(){
+    fun `Given a pencil When I construct the pencil Then I should have default eraser durability`() {
         var pencil = Pencil()
         assertEquals(50, pencil.EraserDurability)
     }
@@ -146,10 +145,9 @@ class PencilTest {
     @Test
     fun `Given a pencil WHEN i specify the eraser durability THEN the pencil will have that durability`() {
         var expectedEraserDurability = 100
-        var pencil = Pencil(durability = 50, sharpenings = 5, eraserDurability = expectedEraserDurability)
+        var pencil = Pencil(durability = 50, remainingSharpenings = 5, EraserDurability = expectedEraserDurability)
         var actualEraserDurability = pencil.EraserDurability
 
         assertEquals(expectedEraserDurability, actualEraserDurability)
-
     }
 }

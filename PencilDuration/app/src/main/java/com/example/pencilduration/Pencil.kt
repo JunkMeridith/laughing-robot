@@ -1,42 +1,17 @@
 package com.example.pencilduration
 
-class Pencil {
+class Pencil(var durability: Int = 50, var remainingSharpenings: Int = 5, var EraserDurability: Int = 50) {
 
-    var durability = 0
     private var defaultDurability = 0
     private val uppercaseDegradation = 2
     private val lowercaseDegradation = 1
     private val spaceDegradation = 0
-    var remainingSharpenings = 0
-    var EraserDurability = 0
 
-    constructor() {
-        this.durability = 50
-        this.defaultDurability = 50
-        this.remainingSharpenings = 5
-        this.EraserDurability = 50
-    }
 
-    constructor(durability: Int) {
-        this.durability = durability
+    init {
         this.defaultDurability = durability
-        this.remainingSharpenings = 5
-        this.EraserDurability = 50
     }
 
-    constructor(durability: Int, sharpenings: Int) {
-        this.durability = durability
-        this.defaultDurability = durability
-        this.remainingSharpenings = sharpenings
-        this.EraserDurability = 50
-    }
-
-    constructor(durability: Int, sharpenings: Int, eraserDurability: Int) {
-        this.durability = durability
-        this.defaultDurability = durability
-        this.remainingSharpenings = sharpenings
-        this.EraserDurability = eraserDurability
-    }
 
     fun degrades(sentence: String): String {
 
@@ -54,7 +29,6 @@ class Pencil {
             characterInSentence.isUpperCase() -> this.durability = this.durability - uppercaseDegradation
             characterInSentence.isLowerCase() -> this.durability = this.durability - lowercaseDegradation
         }
-
     }
 
     private fun writeItOut(character: Char): Char {
@@ -64,8 +38,8 @@ class Pencil {
         }
     }
 
-    fun degradesByChar(character : Char): Char{
-        var writeThatCharacter =  writeItOut(character)
+    fun degradesByChar(character: Char): Char {
+        var writeThatCharacter = writeItOut(character)
         degradePencilDurability(writeItOut(character))
         return writeThatCharacter
     }

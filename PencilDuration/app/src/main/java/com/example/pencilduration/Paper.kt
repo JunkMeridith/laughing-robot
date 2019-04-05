@@ -22,7 +22,9 @@ class Paper {
         var startOfWordIndex = this.sentence?.lastIndexOf(word)
         var endOfWordIndex = startOfWordIndex?.plus(word.length)
 
-        this.sentence = StringBuilder(this.sentence).replace(startOfWordIndex!!, endOfWordIndex!!, whitespaceWordToReplace).toString()
+        this.sentence =
+            StringBuilder(this.sentence).replace(startOfWordIndex!!, endOfWordIndex!!, whitespaceWordToReplace)
+                .toString()
     }
 
 }

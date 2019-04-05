@@ -36,7 +36,7 @@ class PaperUnitTests {
     }
 
     @Test
-    fun `Given text on paper that is mispelled, WHEN i want to edit, THEN the text will be replaced`() {
+    fun `Given text on paper that is misspelled, WHEN i want to edit, THEN the text will be replaced`() {
         paper?.write("How much wood would a woodchuck chuck if a woodchuck could chuck wood")
         paper?.erase("chuck")
 
@@ -44,6 +44,7 @@ class PaperUnitTests {
 
         assertEquals(expectedValue, paper?.getSentence())
     }
+
 
 
 
