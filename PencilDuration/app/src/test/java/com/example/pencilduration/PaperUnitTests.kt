@@ -10,17 +10,15 @@ import org.junit.Before
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class PaperUnitTests {
 
-    var paper: Paper? = null
-    var pencil = Pencil()
-    val sentence = "this is a sentence"
+    private var paper: Paper? = null
+    private val sentence = "this is a sentence"
 
     @Before
     fun setup() {
 
-        this.pencil = Pencil()
-        this.paper = Paper(sentence, this.pencil)
+        this.paper = Paper(sentence)
     }
 
     @Test
@@ -36,4 +34,17 @@ class ExampleUnitTest {
 
         assertEquals(expectedValue, paper?.getSentence())
     }
+
+    @Test
+    fun `Given text on paper that is mispelled, WHEN i want to edit, THEN the text will be replaced`() {
+        paper?.write("How much wood would a woodchuck chuck if a woodchuck could chuck wood")
+        paper?.erase("chuck")
+
+        val expectedValue = "this is a sentenceHow much wood would a woodchuck chuck if a woodchuck could       wood"
+
+        assertEquals(expectedValue, paper?.getSentence())
+    }
+
+
+
 }
