@@ -22,16 +22,32 @@ class Paper {
         val indicesOfWord = findWord(word)
 
         this.sentence =
-            StringBuilder(this.sentence).replace(indicesOfWord.first(), indicesOfWord.last(), whitespaceWordToReplace)
+            StringBuilder(this.sentence).replace(
+                indicesOfWord.first(),
+                indicesOfWord.last(),
+                whitespaceWordToReplace
+            )
                 .toString()
     }
 
     fun edit(wordToErase: String, wordToReplace: String) {
         val indicesOfWords = findWord(wordToErase)
 
-        this.sentence =
-            StringBuilder(this.sentence).replace(indicesOfWords.first(), indicesOfWords.last(), wordToReplace)
-                .toString()
+        erase(wordToErase)
+
+        val startingIndex = indicesOfWords.first()
+        val tempSentence = StringBuilder(this.getSentence())
+
+        for (i in wordToReplace.indices) {
+            val character = wordToReplace[i]
+
+            when(tempSentence[startingIndex + i]) {
+                ' ' -> { tempSentence.setCharAt(startingIndex + i, character) }
+                else -> { tempSentence.setCharAt(startingIndex + i, '@') }
+            }
+        }
+
+        this.sentence = tempSentence.toString()
     }
 
     private fun findWord(word: String): ArrayList<Int> {

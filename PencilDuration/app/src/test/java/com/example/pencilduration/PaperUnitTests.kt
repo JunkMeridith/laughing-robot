@@ -62,7 +62,16 @@ class PaperUnitTests {
         paper?.edit("chuck", "HELLO")
 
         assertEquals(expectedText, paper?.getSentence())
-
     }
 
+    @Test
+    fun `GIVEN a paper with text WHEN i want to edit a word with a new word of the greater length THEN the editing should happen and letters that collide will have '@'`() {
+        var expectedText = "How much wood would a woodchuck chuck if a woodchuck could HELLOH@ood"
+        var pencil = Pencil()
+        var sentence = "How much wood would a woodchuck chuck if a woodchuck could chuck wood"
+        paper = Paper(sentence)
+        paper?.edit("chuck", "HELLOHI")
+
+        assertEquals(expectedText, paper?.getSentence())
+    }
 }
