@@ -19,12 +19,31 @@ class Paper {
 
     fun erase(word: String) {
         var whitespaceWordToReplace = " ".repeat(word.length)
-        var startOfWordIndex = this.sentence?.lastIndexOf(word)
-        var endOfWordIndex = startOfWordIndex?.plus(word.length)
+        val indicesOfWord = findWord(word)
 
         this.sentence =
-            StringBuilder(this.sentence).replace(startOfWordIndex!!, endOfWordIndex!!, whitespaceWordToReplace)
+            StringBuilder(this.sentence).replace(indicesOfWord.first(), indicesOfWord.last(), whitespaceWordToReplace)
                 .toString()
+    }
+
+    fun edit(wordToErase: String, wordToReplace: String) {
+        val indicesOfWords = findWord(wordToErase)
+
+        this.sentence =
+            StringBuilder(this.sentence).replace(indicesOfWords.first(), indicesOfWords.last(), wordToReplace)
+                .toString()
+    }
+
+    private fun findWord(word: String): ArrayList<Int> {
+        val indicesOfWords = ArrayList<Int>()
+
+        val startOfWordIndex = this.sentence?.lastIndexOf(word)
+        val endOfWordIndex = startOfWordIndex?.plus(word.length)
+
+        indicesOfWords.add(startOfWordIndex!!)
+        indicesOfWords.add(endOfWordIndex!!)
+
+        return indicesOfWords
     }
 
 }

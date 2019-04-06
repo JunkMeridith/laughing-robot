@@ -5,11 +5,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
+
 class PaperUnitTests {
 
     private var paper: Paper? = null
@@ -57,5 +53,16 @@ class PaperUnitTests {
         assertEquals(expectedValue, paper?.getSentence())
     }
 
+    @Test
+    fun `GIVEN a paper with text WHEN i want to edit a word with a new word of the same exact length THEN the editing should happen`() {
+        var expectedText = "How much wood would a woodchuck chuck if a woodchuck could HELLO wood"
+        var pencil = Pencil()
+        var sentence = "How much wood would a woodchuck chuck if a woodchuck could chuck wood"
+        paper = Paper(sentence)
+        paper?.edit("chuck", "HELLO")
+
+        assertEquals(expectedText, paper?.getSentence())
+
+    }
 
 }
