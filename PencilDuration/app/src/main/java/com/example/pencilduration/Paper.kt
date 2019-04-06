@@ -17,7 +17,7 @@ class Paper {
         this.sentence += textToGoOnPaper
     }
 
-    fun erase(word: String) {
+    fun erase(word: String, writingUtensil: Pencil) {
         var whitespaceWordToReplace = " ".repeat(word.length)
         val indicesOfWord = findWord(word)
 
@@ -28,12 +28,15 @@ class Paper {
                 whitespaceWordToReplace
             )
                 .toString()
+
+        writingUtensil.erase(word)
     }
 
-    fun edit(wordToErase: String, wordToReplace: String) {
+    fun edit(wordToErase: String, wordToReplace: String, writingUtensil: Pencil) {
         val indicesOfWords = findWord(wordToErase)
 
-        erase(wordToErase)
+        erase(wordToErase, writingUtensil)
+        writingUtensil.writeSentence(wordToReplace)
 
         val startingIndex = indicesOfWords.first()
         val tempSentence = StringBuilder(this.getSentence())
