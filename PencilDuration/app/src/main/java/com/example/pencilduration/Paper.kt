@@ -9,12 +9,12 @@ class Paper {
     }
 
     fun getSentence(): String? {
-
         return this.sentence
     }
 
-    fun write(textToWrite: String) {
-        this.sentence += textToWrite
+    fun write(textToWrite: String, writingUtensil: Pencil) {
+        var textToGoOnPaper = writingUtensil.writeSentence(textToWrite)
+        this.sentence += textToGoOnPaper
     }
 
     fun erase(word: String) {

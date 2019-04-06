@@ -18,17 +18,19 @@ class PaperUnitTests {
     @Before
     fun setup() {
 
-        this.paper = Paper(sentence)
+        this.paper = Paper("")
     }
 
     @Test
     fun GIVEN_APencilAndPaper_WHEN_IWriteASentence_THEN_ThatSentenceIsReturned() {
-        assertEquals(this.sentence, this.paper?.getSentence())
+        assertEquals("", this.paper?.getSentence())
     }
 
     @Test
     fun givenAPaperWithASentenceInItWhenIWriteToItThenItWillAppendToTheSentence() {
-        paper?.write(" and it is really cool!")
+        var pencil = Pencil()
+        paper?.write("this is a sentence", pencil)
+        paper?.write(" and it is really cool!", pencil)
 
         val expectedValue = "this is a sentence and it is really cool!"
 
@@ -37,15 +39,23 @@ class PaperUnitTests {
 
     @Test
     fun `Given text on paper that is misspelled, WHEN i want to edit, THEN the text will be replaced`() {
-        paper?.write("How much wood would a woodchuck chuck if a woodchuck could chuck wood")
+        var pencil = Pencil()
+        paper = Paper("How much wood would a woodchuck chuck if a woodchuck could chuck wood")
         paper?.erase("chuck")
 
-        val expectedValue = "this is a sentenceHow much wood would a woodchuck chuck if a woodchuck could       wood"
+        val expectedValue = "How much wood would a woodchuck chuck if a woodchuck could       wood"
 
         assertEquals(expectedValue, paper?.getSentence())
     }
 
+    @Test
+    fun `GIVEN pencil has durability of 4 WHEN i attempt to write Hello THEN i will get 'Hell '`() {
+        var pencil = Pencil(durability=5)
+        paper?.write("Hello", pencil)
+        val expectedValue = "Hell "
 
+        assertEquals(expectedValue, paper?.getSentence())
+    }
 
 
 }
